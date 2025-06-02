@@ -1,10 +1,13 @@
+import anillo1 from "./images/anillo1.jpg";
+
+
 export const productos = [
   {
     id: 1,
     title: "Anillo Minimalista Plata 925",
     description: "Anillo delicado de plata 925, ideal para uso diario.",
     price: 7500,
-    image: "https://via.placeholder.com/150?text=Anillo",
+    image: anillo1,
     category: "anillos"
   },
   {

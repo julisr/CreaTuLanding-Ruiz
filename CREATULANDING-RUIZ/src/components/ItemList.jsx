@@ -1,6 +1,7 @@
 import React from "react";
 import Item from "./Item";
 import { useState } from "react";
+import '../App.css'
 
 const categories = {
     collares: "collares",
@@ -18,11 +19,11 @@ const filteredItems = selectedCategory
 
  return (
 <div>
-    <div>
-        <button onClick={() => setSelectedCategory(categories.collares)}>Collares</button>
-        <button onClick={() => setSelectedCategory(categories.aros)}>Aros</button>
-        <button onClick={() => setSelectedCategory(categories.anillos)}>Anillos</button>
-        <button onClick={() => setSelectedCategory("")}>Todos</button>
+    <div className="category-buttons">
+        <button className="button"  onClick={() => setSelectedCategory(categories.collares)}>Collares</button>
+        <button className="button" onClick={() => setSelectedCategory(categories.aros)}>Aros</button>
+        <button className="button" onClick={() => setSelectedCategory(categories.anillos)}>Anillos</button>
+        <button className="button" onClick={() => setSelectedCategory("")}>Todos</button>
     </div>
     {filteredItems.map(item => (
        <Item
