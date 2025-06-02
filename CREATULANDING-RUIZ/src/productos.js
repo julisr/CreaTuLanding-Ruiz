@@ -1,4 +1,9 @@
 import anillo1 from "./images/anillo1.jpg";
+import anillo2 from "./images/anillo2.jpg";
+import collar1 from "./images/collar1.jpg";
+import collar2 from "./images/collar2.jpg";
+import aros1 from "./images/aros1.jpg";
+import aros2 from "./images/aros2.jpg";
 
 
 export const productos = [
@@ -12,10 +17,10 @@ export const productos = [
   },
   {
     id: 2,
-    title: "Collar con Dije de Luna",
-    description: "Collar con cadena fina y dije en forma de luna, baño de oro.",
+    title: "Gargantilla con Dije",
+    description: "Collar con cadena fina y dije, baño de oro.",
     price: 9800,
-    image: "https://via.placeholder.com/150?text=Collar",
+    image: collar1,
     category: "collares"
   },
   {
@@ -23,15 +28,15 @@ export const productos = [
     title: "Aros Tipo Argolla Oro Laminado",
     description: "Argollas medianas de oro laminado, cierre invisible.",
     price: 5600,
-    image: "https://via.placeholder.com/150?text=Aros",
+    image: aros1,
     category: "aros"
   },
   {
     id: 4,
-    title: "Anillo Ajustable con Piedra Natural",
-    description: "Anillo abierto con piedra amatista, diseño artesanal.",
+    title: "Anillo con Piedra Natural",
+    description: "Anillo con piedra natural, diseño artesanal.",
     price: 10200,
-    image: "https://via.placeholder.com/150?text=Anillo+Piedra",
+    image: anillo2,
     category: "anillos"
   },
   {
@@ -39,15 +44,15 @@ export const productos = [
     title: "Collar Perlas de Río",
     description: "Collar corto con perlas naturales y broche de acero quirúrgico.",
     price: 15400,
-    image: "https://via.placeholder.com/150?text=Perlas",
+    image: collar2,
     category: "collares"
   },
   {
     id: 6,
-    title: "Aros Estrella Plata 925",
+    title: "Aros Estrellas",
     description: "Aritos pequeños con forma de estrella, hipoalergénicos.",
     price: 4800,
-    image: "https://via.placeholder.com/150?text=Aros+Estrella",
+    image: aros2,
     category: "aros"
   }
 ];

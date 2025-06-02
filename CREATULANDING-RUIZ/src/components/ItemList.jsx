@@ -25,6 +25,8 @@ const filteredItems = selectedCategory
         <button className="button" onClick={() => setSelectedCategory(categories.anillos)}>Anillos</button>
         <button className="button" onClick={() => setSelectedCategory("")}>Todos</button>
     </div>
+
+    <div className="grid-productos">
     {filteredItems.map(item => (
        <Item
   key={item.id}
@@ -33,8 +35,10 @@ const filteredItems = selectedCategory
   price={item.price}
   description={item.description}
   image={item.image}
-/>
+       />
+
     ))}
+</div>
 </div>
  )
 

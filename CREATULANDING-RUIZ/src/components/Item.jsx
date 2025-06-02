@@ -4,10 +4,12 @@ import '../Item.css';
 
 function Item({title, price, description, image, id}) {
   return (
+
     <Link to={`/productos/${id}`} className='card'>
+      <img src={image} alt={title} style={{ width: "100px" }} />
       <h2>{title}</h2>
       <h3>${price}</h3>
-      <img src={image} alt={title} style={{ width: "100px" }} />
+      
     </Link>
   );
 }
