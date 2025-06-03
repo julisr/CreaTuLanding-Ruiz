@@ -26,9 +26,9 @@ const filteredItems = selectedCategory
         <button className="button" onClick={() => setSelectedCategory("")}>Todos</button>
     </div>
 
-    <div className="grid-productos">
+    <div className="contenedor-items"> 
     {filteredItems.map(item => (
-       <Item
+       <Item className="item"
   key={item.id}
   id={item.id}
   title={item.title}
@@ -38,8 +38,9 @@ const filteredItems = selectedCategory
        />
 
     ))}
+    </div>
 </div>
-</div>
+
  )
 
 }
