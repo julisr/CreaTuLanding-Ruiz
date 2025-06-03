@@ -23,8 +23,8 @@ function Detalle() {
             <div className="detalle-info"> 
 
             <h3 className="detalle-item">{producto.title}</h3>  
-            <p>{producto.description}</p>
-            <p>Precio: ${producto.price}</p>
+            <p className="detalle-desc">{producto.description}</p>
+            <p className="precio-detalle">Precio: ${producto.price}</p>
 
            </div>
            </div>

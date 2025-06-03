@@ -22,6 +22,9 @@
   object-fit: cover;
   border-radius: 10px;
   margin-top: 20px;
+  border-color: #F8E0E0;
+  border-width: 3px;
+   border-style: solid;
 }
 
 .detalle-contenido {
@@ -40,4 +43,16 @@
 .detalle-item {
   font-size: 1.2rem;
   padding: 2rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.precio-detalle{
+    margin-top: 20px;
+    text-align: center;
+}
+
+.detalle-desc {
+    text-align: center;
+    
 }
