@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { productos } from "../productos";
 import Error from "./Error.jsx";
+import '../Detalle.css';
 
 function Detalle() {
     const { id } = useParams();
@@ -11,12 +12,22 @@ function Detalle() {
     }
 
     return (
-        <div>
-            <h2>Detalles del producto</h2>
-            <h2>{producto.title}</h2>  
+        <div className="contenedor-detalle">
+
+            <h2 className="detalle-titulo">Detalles del producto</h2> 
+
+            <div className="detalle-contenido">
+
+            <img className="detalle-imagen" src={producto.image} alt={producto.title} />
+
+            <div className="detalle-info"> 
+
+            <h3 className="detalle-item">{producto.title}</h3>  
             <p>{producto.description}</p>
             <p>Precio: ${producto.price}</p>
-            <img src={producto.image} alt={producto.title} />
+
+           </div>
+           </div>
         </div>
     );
 }
