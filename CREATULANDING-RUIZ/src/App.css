@@ -82,7 +82,11 @@ grid-column-gap: 40px;
   object-fit: cover;
   border-radius: 10px;
   margin-top: 30px;
+  transition: filter 0.3s ease;
 }
+
+
+
   
 .texto-item {
  display: flex;
@@ -97,3 +101,18 @@ grid-column-gap: 40px;
  
 }
 
+
+.imagen-item:hover {
+ filter: brightness(0.85);
+}
+
+.boton-item{
+  background-color: #F8E0E0;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+}

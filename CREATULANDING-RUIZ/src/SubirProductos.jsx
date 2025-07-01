@@ -1,3 +1,8 @@
+import { useEffect } from "react";
+import { collection, setDoc, doc } from "firebase/firestore";
+import { db } from "./firebase";
+
+
 import anillo1 from "./images/anillo1.jpg";
 import anillo2 from "./images/anillo2.jpg";
 import collar1 from "./images/collar1.jpg";
@@ -6,14 +11,17 @@ import aros1 from "./images/aros1.jpg";
 import aros2 from "./images/aros2.jpg";
 
 
-export const productos = [
+const productos = [
   {
     id: 1,
     title: "Anillo Minimalista Plata 925",
     description: "Anillo delicado de plata 925, ideal para uso diario.",
     price: 7500,
     image: anillo1,
-    category: "anillos"
+    category: "anillos",
+    quanty: 1
+
+
   },
   {
     id: 2,
@@ -21,7 +29,8 @@ export const productos = [
     description: "Collar con cadena fina y dije, baño de oro.",
     price: 9800,
     image: collar1,
-    category: "collares"
+    category: "collares",
+    quanty: 1
   },
   {
     id: 3,
@@ -29,7 +38,8 @@ export const productos = [
     description: "Argollas medianas de oro laminado, cierre invisible.",
     price: 5600,
     image: aros1,
-    category: "aros"
+    category: "aros",
+    quanty: 1
   },
   {
     id: 4,
@@ -37,7 +47,8 @@ export const productos = [
     description: "Anillo con piedra natural, diseño artesanal.",
     price: 10200,
     image: anillo2,
-    category: "anillos"
+    category: "anillos",
+    quanty: 1
   },
   {
     id: 5,
@@ -45,7 +56,8 @@ export const productos = [
     description: "Collar corto con perlas naturales y broche de acero quirúrgico.",
     price: 15400,
     image: collar2,
-    category: "collares"
+    category: "collares",
+    quanty: 1
   },
   {
     id: 6,
@@ -53,6 +65,30 @@ export const productos = [
     description: "Aritos pequeños con forma de estrella, hipoalergénicos.",
     price: 4800,
     image: aros2,
-    category: "aros"
+    category: "aros",
+    quanty: 1
   }
 ];
+
+function SubirProductos() {
+  useEffect(() => {
+    const exportToFirestore = async () => {
+      const productsCollection = collection(db, "productos");
+
+      for (let item of productos) {
+        try {
+          await setDoc(doc(productsCollection, `${item.id}`), item);
+          console.log(`✅ Producto ${item.title} añadido con ID ${item.id}`);
+        } catch (error) {
+          console.error("❌ Error al subir el producto:", error);
+        }
+      }
+    };
+
+    exportToFirestore();
+  }, []);
+
+  return <div>Subiendo productos a Firebase...</div>;
+}
+
+export default SubirProductos;

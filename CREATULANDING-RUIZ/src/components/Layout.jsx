@@ -15,7 +15,7 @@ const Layout = () => {
 </ul>
             </div>
 
-                <Link to="/" className='navbar-logo'><CartWidget /></Link>
+                <Link to="/carrito" className='navbar-logo'><CartWidget /></Link>
            
         </nav>
          <Outlet />

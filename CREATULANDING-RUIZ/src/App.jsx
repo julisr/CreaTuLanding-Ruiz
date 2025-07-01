@@ -5,6 +5,9 @@ import Nosotros from './components/Nosotros.jsx';
 import Detalle from './components/Detalle.jsx';
 import Layout from './components/Layout.jsx';
 import Home from './components/Home.jsx';
+import CartContent from './components/CartContent/CartContent.jsx';
+import { ContextProvider } from './Context/Context.jsx';
+import SubirProductos from './SubirProductos.jsx';
 
 
 
@@ -12,6 +15,7 @@ function App() {
 
   return (
     <>
+   <ContextProvider>
     <BrowserRouter>
 
     <Routes>
@@ -22,10 +26,15 @@ function App() {
         <Route path='/productos' element={<ItemListContainer/>}/>
         <Route path='/productos/:id' element={<Detalle/>}/>
         <Route path='/*' element={<Error/>}/>
+         <Route path='/carrito' element={<CartContent/>}/>
+       <Route path="/subir" element={<SubirProductos />} />
+      
+        
       </Route>
 
     </Routes>
       </BrowserRouter>
+    </ContextProvider>
     </>
   )
 }

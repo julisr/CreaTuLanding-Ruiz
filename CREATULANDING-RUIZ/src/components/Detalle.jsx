@@ -1,35 +1,73 @@
-import { useParams } from "react-router-dom";
-import { productos } from "../productos";
-import Error from "./Error.jsx";
+import { useParams, useNavigate } from "react-router-dom";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../firebase";
+import { Context } from "../Context/Context";
+import { useContext, useEffect, useState } from "react";
+import '../App.css';
 import '../Detalle.css';
+import Error from "./Error.jsx";
 
 function Detalle() {
-    const { id } = useParams();
-    const producto = productos.find(prod => prod.id === parseInt(id));
+  const { id } = useParams();
+  const { buyProducts } = useContext(Context);
+  const navigate = useNavigate();
 
-    if (!producto) {
-        return <Error />;
-    }
+  const [producto, setProducto] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-    return (
-        <div className="contenedor-detalle">
+  useEffect(() => {
+    const fetchProducto = async () => {
+      try {
+        const docRef = doc(db, "productos", id);
+        const docSnap = await getDoc(docRef);
 
-            <h2 className="detalle-titulo">Detalles del producto</h2> 
+        if (docSnap.exists()) {
+          setProducto({ ...docSnap.data(), id: docSnap.id });
+        } else {
+          setProducto(null); 
+        }
+      } catch (error) {
+        console.error("Error al obtener el producto:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-            <div className="detalle-contenido">
+    fetchProducto();
+  }, [id]);
 
-            <img className="detalle-imagen" src={producto.image} alt={producto.title} />
+  if (loading) {
+    return <p>Cargando producto...</p>;
+  }
 
-            <div className="detalle-info"> 
+  if (!producto) {
+    return <Error />;
+  }
 
-            <h3 className="detalle-item">{producto.title}</h3>  
-            <p className="detalle-desc">{producto.description}</p>
-            <p className="precio-detalle">Precio: ${producto.price}</p>
+  const handleBuy = () => {
+    const agregarProducto = { ...producto, quanty: 1 };
+    buyProducts(agregarProducto);
+    navigate("/carrito");
+  };
 
-           </div>
-           </div>
+  return (
+    <div className="contenedor-detalle">
+      <h2 className="detalle-titulo">Detalles del producto</h2>
+
+      <div className="detalle-contenido">
+       <img className="detalle-imagen" src={producto.image} alt={producto.title} />
+
+        <div className="detalle-info">
+          <h3 className="detalle-item">{producto.title}</h3>
+          <p className="detalle-desc">{producto.description}</p>
+          <p className="precio-detalle">Precio: ${producto.price}</p>
+          <button className="detalle-boton" onClick={handleBuy}>
+            Añadir al carrito
+          </button>
         </div>
-    );
+      </div>
+    </div>
+  );
 }
 
 export default Detalle;

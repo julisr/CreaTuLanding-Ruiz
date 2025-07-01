@@ -1,48 +1,60 @@
-import React from "react";
-import Item from "./Item";
-import { useState } from "react";
-import '../App.css'
+import { useContext, useState } from "react";
+import { Link } from "react-router-dom";
+import '../App.css'; 
+import { Context } from "../Context/Context";
 
 const categories = {
-    collares: "collares",
-    aros: "aros",
-    anillos: "anillos",
-}
+  collares: "collares",
+  aros: "aros",
+  anillos: "anillos",
+};
 
-function ItemList({items}) {
-const [selectedCategory, setSelectedCategory] = useState("");
+function ItemList({ items }) {
+  const [selectedCategory, setSelectedCategory] = useState("");
 
-const filteredItems = selectedCategory
-    ? items.filter(item => item.category === selectedCategory)
+  const filteredItems = selectedCategory
+    ? items.filter((item) => item.category === selectedCategory)
     : items;
 
-
- return (
-<div>
-    <div className="category-buttons">
-        <button className="button"  onClick={() => setSelectedCategory(categories.collares)}>Collares</button>
+  return (
+    <div className="item-list-container">
+      <div className="category-buttons">
+        <button className="button" onClick={() => setSelectedCategory(categories.collares)}>Collares</button>
         <button className="button" onClick={() => setSelectedCategory(categories.aros)}>Aros</button>
         <button className="button" onClick={() => setSelectedCategory(categories.anillos)}>Anillos</button>
         <button className="button" onClick={() => setSelectedCategory("")}>Todos</button>
+      </div>
+
+      <div className="contenedor-items">
+        {filteredItems.map((item) => (
+          <Item key={item.id} {...item} />
+        ))}
+      </div>
     </div>
+  );
+}
 
-    <div className="contenedor-items"> 
-    {filteredItems.map(item => (
-       <Item className="item"
-  key={item.id}
-  id={item.id}
-  title={item.title}
-  price={item.price}
-  description={item.description}
-  image={item.image}
-       />
+function Item({ id, title, price, image }) {
+  const { buyProducts } = useContext(Context);
 
-    ))}
-    </div>
-</div>
+  const product = { id, title, price, image };
 
- )
+  const handleBuy = (e) => {
+    e.preventDefault(); // ✔️ Evita que el Link redirija cuando hacés clic en el botón
+    buyProducts(product);
+  };
 
+  return (
+    <Link to={`/productos/${id}`} className="card">
+      <img className="imagen-item" src={image} alt={title} />
+      <div className="texto-item">
+        <p>{title}</p>
+        <p>${price}</p>
+
+        <button onClick={handleBuy} className="boton-item">+</button>
+      </div>
+    </Link>
+  );
 }
 
 export default ItemList;
